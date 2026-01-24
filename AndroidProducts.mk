@@ -14,7 +14,6 @@
 # limitations under the License.
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/full_m7.mk \
     $(LOCAL_DIR)/lineage_m7.mk
 
 COMMON_LUNCH_CHOICES := \
