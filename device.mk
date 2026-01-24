@@ -13,7 +13,7 @@
 # limitations under the License.
 
 # Get non-open-source specific aspects
-$(call inherit-product-if-exists, vendor/htc/m7/m7-vendor.mk)
+$(call inherit-product, vendor/htc/m7/m7-vendor.mk)
 
 # FM radio
 PRODUCT_PACKAGES += \
