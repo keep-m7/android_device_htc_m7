@@ -39,13 +39,6 @@
 
 using android::base::GetProperty;
 
-void property_set(char const prop[], char const value[]) {
-    prop_info *pi;
-
-    pi = (prop_info*) __system_property_find(prop);
-    if (!pi)
-        __system_property_add(prop, strlen(prop), value, strlen(value));
-}
 
 void property_override(char const prop[], char const value[])
 {
@@ -75,6 +68,7 @@ void common_properties()
 void cdma_properties(char const default_cdma_sub[], char const default_network[])
 {
     property_override("ro.telephony.default_network", default_network);
+    property_override("ro.telephony.default_cdma_sub", default_cdma_sub);
     property_override("persist.radio.snapshot_enabled", "1");
     property_override("persist.radio.snapshot_timer", "22");
 }
@@ -102,7 +96,6 @@ void vendor_load_properties()
         property_override_triple("ro.product.device", "ro.product.system.device", "ro.product.vendor.device", "m7vzw");
         property_override("ro.build.product", "m7vzw");
         property_override("ro.telephony.get_imsi_from_sim", "true");
-        property_override("ro.telephony.default_cdma_sub", "0");
         property_override("ro.ril.wp.feature", "1");
         property_override("ro.use_data_netmgrd", "true");
         property_override("telephony.lteOnCdmaDevice", "1");
@@ -142,5 +135,5 @@ void vendor_load_properties()
     }
 
     device = GetProperty("ro.product.device", "");
-    LOG(ERROR) << "Found bootmid '" << bootmid.c_str() << "' setting build properties for '" << device.c_str() << "' device\n";
+    LOG(INFO) << "Found bootmid '" << bootmid << "' setting build properties for '" << device << "'\n";
 }
